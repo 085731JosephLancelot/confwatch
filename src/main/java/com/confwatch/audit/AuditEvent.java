@@ -49,6 +49,16 @@ public class AuditEvent {
         return success;
     }
 
+    /**
+     * Returns true if this event represents a failure, i.e., the event type is
+     * {@link EventType#ACTION_FAILED} or the action was attempted but did not succeed.
+     *
+     * @return true if this is a failure event
+     */
+    public boolean isFailure() {
+        return eventType == EventType.ACTION_FAILED || !success;
+    }
+
     @Override
     public String toString() {
         return String.format("[%s] %s | file=%s | success=%b | details=%s",
