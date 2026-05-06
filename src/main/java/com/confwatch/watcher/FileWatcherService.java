@@ -55,6 +55,24 @@ public class FileWatcherService {
         log.info("FileWatcherService stopped.");
     }
 
+    /**
+     * Returns true if this service is currently running and polling for file events.
+     *
+     * @return {@code true} if the watcher is active, {@code false} otherwise
+     */
+    public boolean isRunning() {
+        return running;
+    }
+
+    /**
+     * Returns the number of directories currently being watched.
+     *
+     * @return count of registered watch directories
+     */
+    public int watchedDirectoryCount() {
+        return watchedDirs.size();
+    }
+
     private void pollEvents() {
         while (running) {
             WatchKey key;
