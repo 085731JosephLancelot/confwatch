@@ -54,6 +54,18 @@ public class RetryPolicy {
         return Math.min(delay, maxDelayMs);
     }
 
+    /**
+     * Returns whether a retry should be attempted after the given attempt number (1-based).
+     * Returns {@code true} if the attempt number is less than {@code maxAttempts},
+     * meaning there are still retries remaining.
+     *
+     * @param attemptNumber the 1-based number of the attempt that just completed
+     * @return {@code true} if another attempt should be made, {@code false} otherwise
+     */
+    public boolean shouldRetry(int attemptNumber) {
+        return attemptNumber < maxAttempts;
+    }
+
     @Override
     public String toString() {
         return "RetryPolicy{maxAttempts=" + maxAttempts +
